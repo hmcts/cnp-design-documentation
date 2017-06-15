@@ -9,6 +9,8 @@ A Terraform module provides a reusable service composed of resources needed to p
 A Terraform project builds the infrastructure for use. A Terraform project is composed of modules. 
 A Terraform project is an application or product specific infrastructure.
 
+A Terraform project’s outputs can and should be used in other projects by referring to the outputs in the state.
+
 ![Pipeline Flow](img/pipelineflow.png)
 
 ### Do
@@ -25,6 +27,7 @@ A Terraform project is an application or product specific infrastructure.
 A TerraService is an opinionated terraform module that provides an architectural building block. A terra service may use other Terraform modules. 
 
 A TerraService will have a CI pipeline. A TerraService will have unit, integration and compliance tests. 
+
 
 ## TerraServices as building blocks
 
