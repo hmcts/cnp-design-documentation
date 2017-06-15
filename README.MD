@@ -62,12 +62,12 @@ Set the default env in scripts to **local**. Use a CI server to pass the env for
 
 ```text
 project-name\
-			variables.tf
-			state.tf
-			main.tf
-			frontend-cluster.tf
-			validation-service-cluster.tf
-			output.tf				
+		variables.tf
+		state.tf
+		main.tf
+		frontend-cluster.tf
+		validation-service-cluster.tf
+		output.tf				
 ```
 
 Required tf files:
