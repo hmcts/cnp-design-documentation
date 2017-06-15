@@ -1,11 +1,14 @@
 # Terraform Guidelines
+
+
+
 ## What is a module, what is a project?
 [Terraform Modules](https://www.terraform.io/intro/getting-started/modules.html) are self contained packages of configuration
 A Terraform module provides a reusable service composed of resources needed to provide an infrastructure building block.
 
 A Terraform project builds the infrastructure for use. A Terraform project is composed of modules. 
 A Terraform project is an application or product specific infrastructure.
-
+[Pipeline Flow](img/pipelineflow.png)
 ### Do
 - Extract out a module from a project, if you see reusable functionality. 
 - Provide an opinionated Terraform module that encapsulates best practice. 
