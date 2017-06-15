@@ -86,6 +86,19 @@ Required tf files:
 
 ## Module structure
 
+```text
+module-<modulename>\
+	variables.tf 
+	main.tf
+	output.tf
+	application-service.tf
+	files\
+		arm-template.json
+	tests\
+		fixture\
+			main.tf 
+```
+
 ## Roles and responsibilities 
 
 Application and product teams own Terraform projects and will compose their infrastructure using tested and published TerraServices. Teams may have their own modules, but this should be the exception than the norm.
