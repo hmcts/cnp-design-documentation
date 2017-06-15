@@ -59,6 +59,31 @@ Set the default env in scripts to **local**. Use a CI server to pass the env for
  
 ## Project structure
 
+
+```text
+project-name\
+			variables.tf
+			state.tf
+			main.tf
+			frontend-cluster.tf
+			validation-service-cluster.tf
+			output.tf				
+```
+
+Required tf files:
+
+- **variables.tf** : variables for the project. Mandatory variables are listed below
+    
+    - env - environment to apply the changes to. Resources created within a project should be tagged and named with the environment 
+    - azure authentication details (TBD)  
+
+-  **main.tf** - main entry point with the provider definition.
+-  **output.tf** - outputs from the project.
+-  Infrastructure component specific tf files should contain the logically related resources to build a component. Avoid scattering resources needed for one component across several files.
+-  Organise files by function not by technical details.
+         
+
+
 ## Module structure
 
 ## Roles and responsibilities 
