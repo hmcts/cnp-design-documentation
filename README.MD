@@ -9,7 +9,7 @@ A Terraform module provides a reusable service composed of resources needed to p
 A Terraform project builds the infrastructure for use. A Terraform project is composed of modules. 
 A Terraform project is an application or product specific infrastructure.
 
-[Pipeline Flow]: https://github.com/contino/moj-terraform-guidelines/img/pipelineflow.png
+[Pipeline Flow]:  img/pipelineflow.png
 
 ### Do
 - Extract out a module from a project, if you see reusable functionality. 
