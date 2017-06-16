@@ -35,7 +35,7 @@ Use TerraServices to build application and product specific infrastructure.
 
 ## Publishing and versioning TerraServices
 
-Use Semantic versioning to publish a TerraService in the CI pipeline automatically when tests have passed. Tag a release, and point the *latest* tag to the latest release.
+Use [Semantic versioning](http://semver.org/) to publish a TerraService in the CI pipeline automatically when tests have passed. Tag a release, and point the *latest* tag to the latest release.
 
 Increment major version when there is a major new feature or a major breaking change.
 
