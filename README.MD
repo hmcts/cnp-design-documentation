@@ -33,7 +33,17 @@ A TerraService will have a CI pipeline. A TerraService will have unit, integrati
 
 Use TerraServices to build application and product specific infrastructure. 
 
-## Storing state
+## Publishing and versioning TerraServices
+
+Use Semantic versioning to publish a TerraService in the CI pipeline automatically when tests have passed. Tag a release, and point the *latest* tag to the latest release.
+
+Increment major version when there is a major new feature or a major breaking change.
+
+Increment minor versions for minor feature changes. 
+Increment the patch version on every build.
+
+
+## Storing State
 
 Terraform Projects store state in a backend. 
 State will be stored with the following structure
