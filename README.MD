@@ -97,7 +97,7 @@ Required tf files:
          
 
 
-## Module structure
+## TerraService/Module structure
 
 ```text
 module-<modulename>\
