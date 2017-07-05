@@ -19,7 +19,8 @@ A component which provides a service. This is also a deployable component. One o
 3.  Do not include the type of the resource in the name. For example, avoid using *rhubarb-dev-resourcegroup*
 
 ## Resource groups 
-	1. Applications:            
+
+1. Applications:            
 
 ```  
     <product>-<application>-<env>
