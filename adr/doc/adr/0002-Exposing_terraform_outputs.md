@@ -1,4 +1,4 @@
-# 2.  Expose terraform outputs from Product infrastructure to Application pipelines
+# 2. Expose terraform outputs from Product infrastructure to Application pipelines
 Date: 2017-07-07
 
 ## Status 
