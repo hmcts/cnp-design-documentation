@@ -22,7 +22,7 @@ The key questions are;
 
 [High Level Design](https://www.lucidchart.com/documents/edit/69b50fa0-77e7-43b5-92ed-1933abb10a80)
 
-[](high-level-infra-design.png)
+![](high-level-infra-design.png)
 
 ### Production Applications Infrastructure VNet (applications-prod)
 Production services will run inside a dedicated Virtual Network (VNet). 
