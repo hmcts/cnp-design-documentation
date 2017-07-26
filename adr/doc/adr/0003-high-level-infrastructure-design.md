@@ -41,9 +41,24 @@ Traffic Manager supports configurable routing, which will support [blue/green de
 ### Azure Application Gateway + Web Application Firewall
 [Azure Application Gateway](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-introduction)
 
-The Azure Application Gateway 
+The Azure Application Gateway will be used as a gateway for HTTPS traffic. It will be used to expose internal service for public consumption. 
+
+Services that are not exposed by the Azure App Gateway cannot be accessed externally. 
+
+The Web Application Firewall component of the Azure App Gateway,  comes preconfigured with CRS 3.0 by default or you can choose to use 2.2.9. CRS 3.0 offers reduced false positives over 2.2.9. The ability to customize rules to suit your needs is provided. Some of the common web vulnerabilities which web application firewall protects against includes:
+
+- SQL injection protection
+- Cross site scripting protection
+- Common Web Attacks Protection such as command injection, HTTP request smuggling, HTTP response splitting, and remote file inclusion attack
+- Protection against HTTP protocol violations
+- Protection against HTTP protocol anomalies such as missing host user-agent and accept headers
+- Prevention against bots, crawlers, and scanners
+- Detection of common application misconfigurations (i.e. Apache, IIS, etc.) 
+
 
 ### Azure Application Service Environments with Internal Load balancer
+
+
 ### Private DNS 
 ## Consequences
 
