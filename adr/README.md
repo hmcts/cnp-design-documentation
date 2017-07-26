@@ -2,3 +2,4 @@
 
 * [1. Record architecture decisions](0001-record-architecture-decisions.md)
 * [2. Expose terraform outputs from Product infrastructure to Application pipelines](0002-Exposing_terraform_outputs.md)
+* [3. High Level Infrastructure Design](0003-high-level-infrastructure-design.md)
