@@ -1,4 +1,4 @@
-# 4. Setting up Vault ad a Certification Authority (CA)
+# 4. Setting up Vault as a Certification Authority (CA)
 Date: 2017-07-27
 
 ## Status 

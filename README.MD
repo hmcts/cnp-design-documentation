@@ -9,4 +9,4 @@
 * [1. Record architecture decisions](doc/adr/0001-record-architecture-decisions.md)
 * [2. Expose terraform outputs from Product infrastructure to Application pipelines](doc/adr/0002-Exposing_terraform_outputs.md)
 * [3. High Level Infrastructure Design](doc/adr/0003-high-level-infrastructure-design.md)
-* [4. Setting up Vault ad a Certification Authority (CA)](doc/adr/0004-Setting_up_vault_as_a_cert_auth.md)
+* [4. Setting up Vault as a Certification Authority (CA)](doc/adr/0004-Setting_up_vault_as_a_cert_auth.md)
