@@ -1,6 +1,6 @@
 # Infrastructure guidelines
 
-* [1. Terraform Guidelines](doc/terraform-guidlines.MD)
+* [1. Terraform Guidelines](doc/terraform-guidelines.MD)
 * [2. Naming Conventions](doc/naming-conventions.md)
 * [3. Test Driven Infrastructure](doc/test-driven-infrastructure.md)
 
