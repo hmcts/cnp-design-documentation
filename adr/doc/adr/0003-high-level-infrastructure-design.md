@@ -58,8 +58,25 @@ The Web Application Firewall component of the Azure App Gateway,  comes preconfi
 
 ### Azure Application Service Environments with Internal Load balancer
 
+The Application Service Environment provides an isolated and dedicated environment for securely running apps. See [App Service Environment Documentation](https://docs.microsoft.com/en-us/azure/app-service/app-service-environment/readme)
+
+An ASE hosts applications. Each application spans one or more nodes within an ASE. An application uses more nodes according
+to it’s scale.
+
+The entry point to applications is via an internal load balancer  (ILB) attached to the ASE. The ILB handles the routing and SSL offload. 
+
+
 
 ### Private DNS 
+
+A private DNS service will run inside each VNet to provide name resolution for services within the network. 
+The DNS solution is TBD.
+
+### TLS/SSL by default
+
+All traffic flows between components will be TLS/SSL enabled. 
+
 ## Consequences
 
-Consequences here...
+TBD 
+
