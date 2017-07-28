@@ -238,4 +238,4 @@ NzA3MjgxNjU1MTBaMCIxIDAeBgNVBAMTF1Byb2JhdGUgSW50ZXJtZWRpYXRlIENB
 ## Consequences
 As demonstrated above, it is possible to use Vault as a Certification Authority. Vault's PKI backend offers enough flexibility to adapt the product to common demands for a CA.
 
-It is important, however, to highlight that the values and names used in the examples above doesn't necessarily match the current names used in the Reform program. Likewise it is also important to mention that with this document we are not trying to provide guidance on how to operate Vault. Both of this last two points are outside of the scope of this ADR and should be covered in their own documentation due to the extensive nature of the topics.
+It is important, however, to highlight that the values and names used in the examples above doesn't necessarily match the current names used in the Reform program. Likewise it is also important to mention that with this document we are not trying to provide guidance on how to operate Vault. Both of these last two points are outside of the scope of this ADR and should be covered in their own documentation due to the extensive nature of the topics.
