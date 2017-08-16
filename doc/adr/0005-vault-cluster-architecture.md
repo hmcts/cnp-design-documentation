@@ -33,8 +33,8 @@ Note that internal cluster communication always be forced to https since only TL
 ### Considerations
 
 One of the aspect to consider is what benefit brings to put the vault cluster behind a load balancer in terms of security and availability.
-The design above doesn't have the load balancer component as it will require a spike to get a better understanding of pros and cons.
-
+The design above shows an internal load balancer component to serve the secret management layer. It will require a spike to get a better understanding of pros and cons.
+The Vault cluster lives in its own private subnet even if we should explore the scenario with Vault cluster deployed in a different VNet within the management subscription.
 
 ## Decision
 
@@ -71,3 +71,9 @@ This approach also has its challenges. Especially around tooling.
 * Fixing problems is slower as you can’t just SSH into an existing server. It needs to be redeployed.
 * There needs to be a way to reliably replace a server without impacting the whole system.
 * Replacing databases continuously is hard, but this won't be our case.
+
+Considering that Hashicorp is known for maintaining backward compatibilities between releases we have two different upgrade scenarios to discover as following:
+
+1. Upgrade based on new cluster creation alongside the current one deployed and then decommission it when tests of the newest cluster created are green
+2. Upgrade based on deploying and plugging into the cluster pool a server at the time and then take off the old servers when the secrets are properly replicated across the new boxes.
+
