@@ -1,3 +1,11 @@
+# Application Delivery Pipelines
+
+Date: 2017-09-07
+
+## Status
+
+Accepted
+
 ## What is Continuous Delivery?
 
 Continuous Delivery is a software development discipline where you build software in such a way that the software can be released to production at any time.
