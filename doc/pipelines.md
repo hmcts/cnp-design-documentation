@@ -30,9 +30,16 @@ The SCM system will be the source of truth for application and infrastructure co
 
 ### SonarQube
 
+SonarQube is used for code quality scans. Each application should have a SonarQube scan as part of it’s build stage
+
 ### Artifactory
 
+JFrog Artifactory is used to store build aretefacts. It is also used as a private NPM registry and a private Docker image registry
+
 ## Pipeline Stages
+
+
+### The Build and Test stage
 
 Source code is checked out of the mainline branch, or a working branch.
 
@@ -54,15 +61,61 @@ Applications are deployed to Azure PaaS services. These are Azure Web Applicatio
 
 
 ### Packaging projects for deployment
-Web applications should use the PORT environment variable to configure the HTTP port to accept requests.
+Web applications should use the **PORT** environment variable to configure the HTTP port to accept requests.
 
 #### Node.JS
 Node projects are not packaged, and the application is deployed as is.
 Push the current commit to the remote repository hosted by the Web Application service
 
 #### Java
-Java applications are packaged as a self executing JAR. Web applications should contain an embedded web server. 
+Java applications are packaged as a self executing JAR. Web applications should contain an embedded web server. I.e Spring Boot, Jetty etc
 
+### Deployment
+Deployment is provided by a Jenkins library.
+In the application’s Jenkins pipeline, import the *Infrastructure* library. 
+See https://github.com/contino/moj-rhubarb-frontend/blob/master/Jenkinsfile for an example
+
+
+
+### Post Deployment tests
+
+#### Smoke Tests
+
+The pipeline should run post deployment smoke tests.The smoke tests should ensure at a minimum the /health endpoint is accessible.
+#### Integration tests
+The pipeline should run any relevant integration tests
+
+#### Security tests
+
+In test environments the pipeline should run OWASP ZAP security tests
+
+#### Performance tests
+Performance tests should be run in a non-production environment.  It is not expected that performance tests are run as part of the pipeline build
+
+#### Manual exploratory testing
+Continuous manual exploratory testing and security testing should be done. Manual tests should not act as a quality gate in the pipeline. 
+
+### Production Deployments
+
+Production deployments will follow a blue/green deployment process. See [Blue/Green deployments](https://martinfowler.com/bliki/BlueGreenDeployment.html)
+
+Database changes are not part of the blue/green deployment process, and should be considered on a case by case basis.
+
+Azure traffic manager will be used to control traffic to Blue/Green environments.
+
+Feature toggles will also be used to expose or hide new features. 
+
+Each production deployment should be visualised as a line in a graph.
+
+### Post Production Deployment Monitoring
+Production application stacks should have dashboards that monitor the status of the application in production.
+
+The dashboards should include:
+1. Application health metrics
+2. Product quality metrics
+3. Product usage metrics to provide feedback
+
+Each change to production should be marked as a line on dashboard graphs.
 
 
 ## Key Principles for the Ministry of Justice Deployment Pipelines
