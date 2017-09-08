@@ -55,7 +55,7 @@ The format of a standard service lookup is:
 
 The tag and datacenter parts are optional but we can see, however, that the service part is static and can't be changed. At first this can be seen as a limitation on how services are named at provisioning time but by leveraging Azure's webapp custom domains we can implement naming patterns driven by good industry practices.
 
-All our webapp based services can easily follow these conventions since we, as operators, have good control over their settings, but the Azure Source Control Management (SCM) is an exception to this rule mainly because we have very little control over its naming conventions (i.e. Azure force us to use \<service name\>.scm.\<internal domain\>. In order to comply with both, Industry best practices and Azure's own conventions, we can register SCM as a service in consul and update its tags when services are registered. The following cli session illustrates how this can be accomplished:
+All our webapp based services can easily follow these conventions since we, as operators, have good control over their settings, but the Azure Source Control Management (SCM) is an exception to this rule mainly because we have very little control over its naming conventions (i.e. Azure force us to use `<service name>.scm.<internal domain>`. In order to comply with both, Industry best practices and Azure's own conventions, we can register SCM as a service in consul and update its tags when services are registered. The following cli session illustrates how this can be accomplished:
 
 ```code
 [dsanabria@dnsserver ~]$ host mojwaftest-dev.scm.service.internal
