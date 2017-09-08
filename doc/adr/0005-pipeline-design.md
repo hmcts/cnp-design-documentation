@@ -22,7 +22,7 @@ You achieve continuous delivery by continuously integrating the software done by
 
 One of the challenges of an automated build and test environment is you want your build to be fast, so that you can get fast feedback, but comprehensive tests take a long time to run. A deployment pipeline is a way to deal with this by breaking up your build into stages. Each stage provides increasing confidence, usually at the cost of extra time. Early stages can find most problems yielding faster feedback, while later stages provide slower and more through probing.
 
-![Pipeline Flow](../img/application-pipelines.png)
+![Pipeline Flow](../../img/application-pipelines.png)
 
 ## Application Requirements  
 
