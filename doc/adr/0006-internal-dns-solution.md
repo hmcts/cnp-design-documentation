@@ -1,0 +1,79 @@
+# 4. Setting up Vault as a Certification Authority (CA)
+Date: 2017-09-08
+
+## Status 
+Accepted
+
+## Context 
+
+As part of RDO-458 we wanted to come up with a DNS solution so that when web applications are put into service these should be discoverable and available for consumption by other INTERNAL services. The "Internal" part of the description is fundamental within this context and it defines the scope of this proposal.
+
+## Decision 
+
+Although DNS offerings like BIND, unbound or dnsmasq allow us to provide name resolution services for our problem, we felt that none of them provided options good enough to update name records dynamically out of the box. As a solution for this particular challenge we have decided to start leveraging Consul's DNS interface, which allows applications to make use of service discovery without any high-touch integration with Consul.
+
+For our particular case we are proposing to have DNS service lookups directed to Internal domains to be forwarded from a current/new DNS server (i.e BIND or Dnsmasq) to our Consul service. For example a host can use the DNS server directly via name lookups like `rhubarb-frontend.service.internaldomain`. This query automatically translates to a lookup of the IP that provide the rhubarb-frontend service, are located in the <internal domain> ASE. The following drawing give us a high level overview of the proposed solution:
+
+![Internal DNS](../../img/internal-dns-proposal.png)
+
+This approach give us a number of advantages including simplification of the DNS server configuration (a single config entry can forward all queries about internaldomain to our consul service) or reusing existing DNS infrastructure (i.e. Support for BIND, Dnsmasq, Unbound, etc ...), but more importantly it allow us to update DNS records with very simple API calls as demonstrated below. 
+
+Consider an example setup where a Dnsmasq server is running on `10.0.1.4` and for demonstration purposes the Consul server is running on the same node. Consul is listening on tcp port 8500 for app registration and tcp port 8600 for DNS queries forwarded from Dnsmasq, we can then configure dnsmasq to forward all lookup queries for domain `internal` to consul:
+
+```code
+[dsanabria@dnsserver ~]$ cat /etc/dnsmasq.d/10-consul 
+server=/internal/127.0.0.1#8600
+[dsanabria@dnsserver ~]$
+```
+
+If a new service wants to register to our DNS system this can be achieved with a very simple API call as shown in the following snippet:
+
+```code
+[dsanabria@dnsserver ~]$ host mojwaftest-dev.service.internal
+Host mojwaftest-dev.service.internal.3ipn3ped5wke5cbmc154jrnarb.zx.internal.cloudapp.net not found: 5(REFUSED)
+[dsanabria@dnsserver ~]$ cat service.json 
+{
+  "ID": "mojwaftest-dev",
+  "Name": "mojwaftest-dev",
+  "Tags": [],
+  "Address": "10.0.4.9",
+  "Port": 443
+}
+[dsanabria@dnsserver ~]$ curl --request PUT --data @service.json http://localhost:8500/v1/agent/service/register
+[dsanabria@dnsserver ~]$ host mojwaftest-dev.service.internal
+mojwaftest-dev.service.internal has address 10.0.4.9
+[dsanabria@dnsserver ~]$
+```
+
+Another advantage of embracing consul as is that it lead us to start adopting best naming practices by following specific methods for service lookups. In consul service queries support two lookup methods: standard and strict RFC 2782, for our use case we are recommending the "standard" service lookup method.
+
+The format of a standard service lookup is:
+
+```code
+[tag.]<service>.service[.datacenter].<domain>
+```
+
+The tag and datacenter parts are optional but we can see, however, that the service part is static and can't be changed. At first this can be seen as a limitation on how services are named at provisioning time but by leveraging Azure's webapp custom domains we can implement naming patterns driven by good industry practices.
+
+All our webapp based services can easily follow these conventions since we, as operators, have good control over their settings, but the Azure Source Control Management (SCM) is an exception to this rule mainly because we have very little control over its naming conventions (i.e. Azure force us to use <service name>.scm.<internal domain>. In order to comply with both, Industry best practices and Azure's own conventions, we can register SCM as a service in consul and update its tags when services are registered. The following cli session illustrates how this can be accomplished:
+
+```code
+[dsanabria@dnsserver ~]$ host mojwaftest-dev.scm.service.internal
+Host mojwaftest-dev.scm.service.internal.3ipn3ped5wke5cbmc154jrnarb.zx.internal.cloudapp.net not found: 5(REFUSED)
+[dsanabria@dnsserver ~]$ cat scm.json 
+{
+  "ID": "scm",
+  "Name": "scm",
+  "Tags": ["mojwaftest-dev"],
+  "Address": "10.0.4.9",
+  "Port": 443
+}
+[dsanabria@dnsserver ~]$ curl --request PUT --data @scm.json http://localhost:8500/v1/agent/service/register
+[dsanabria@dnsserver ~]$ host mojwaftest-dev.scm.service.internal
+mojwaftest-dev.scm.service.internal has address 10.0.4.9
+[dsanabria@dnsserver ~]$
+```
+
+## Consequences
+
+We recommend to implement the DNS forward solution described above using `dnsmasq` and `consul`. Both services are lightweight, flexible and robust. By providing the capability of dynamically updating name records via API calls we will be improving our automation options considerably.
