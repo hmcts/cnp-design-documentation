@@ -52,12 +52,12 @@ JFrog Artifactory is used to store build aretefacts. It is also used as a privat
 Source code is checked out of the mainline branch, or a working branch.
 
 #### For Node.JS projects
-1. Run npm install or yarn install to install dependencies including dev dependencies to run tests
-2. Run npm lint or yarn lint. 
-3. Run npm test or yarn test to run unit tests and feature tests
-4. Run npm test:nsp or yarn test:nsp to run Node Security Project tests to scan for known vulnerabilities  
-5. Run npm sonar-scanner or yarn sonar-scanner to run a SonarQube scan
-6. Run any other tests via npm or yarn that are applicable  
+1. Run yarn install to install dependencies including dev dependencies to run tests
+2. Run yarn lint. 
+3. Run yarn test to run unit tests and feature tests
+4. Run yarn test:nsp to run Node Security Project tests to scan for known vulnerabilities  
+5. Run yarn sonar-scanner to run a SonarQube scan
+6. Run any other tests via yarn that are applicable  
 
 #### For Java projects
 1. Run a clean compile. This can be mvn clean compile ( or equivalent in gradle)
