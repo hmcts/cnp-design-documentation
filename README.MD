@@ -3,6 +3,8 @@
 * [1. Terraform Guidelines](doc/terraform-guidelines.MD)
 * [2. Naming Conventions](doc/naming-conventions.md)
 * [3. Test Driven Infrastructure](doc/test-driven-infrastructure.md)
+* [4. Just in time access](doc/just-in-time-access.md)
+
 
 # Architecture Decision Records
 
