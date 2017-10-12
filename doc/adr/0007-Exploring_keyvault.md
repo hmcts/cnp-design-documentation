@@ -75,7 +75,7 @@ You can do the following with certificate contacts:
 
 Although it is not currently clear how we could leverage KV as an Intermediate CA we believe the extensive number of operations that can be controlled via its REST API provide us with enough flexibility to accommodate the webapp + certs use cases currently devised for CNP.
 
-It is also important to note that although we are avoiding the complexities of hosting a similar service on IaaS (i.e. hashicorp's Vault) we'll have, in the case of KV, design and implement the details of a suitable authentication workflow/framework for webapps to be deployed on CNP i.e. describing which permissions must be enabled at deployment time so that apps can successfully retrieve authentication codes from Active Directory in order to create and retrieve certificates from KV via its REST API. Such workflow/framework will be covered in a separate ADR.
+It is also important to note that although we are avoiding the complexities of hosting a similar service on IaaS (i.e. hashicorp's Vault) we'll have to, in the case of KV, design and implement the details of a suitable authentication workflow/framework for webapps to be deployed on CNP i.e. describing which permissions must be enabled at deployment time so that apps can successfully retrieve authentication codes from Active Directory in order to create and retrieve certificates from KV via its REST API. Such workflow/framework will be covered in a separate ADR.
 
 For more information please check the following resources:
 https://docs.microsoft.com/en-us/rest/api/keyvault/certificate-scenarios
