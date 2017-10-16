@@ -14,3 +14,4 @@
 * [4. Setting up Vault as a Certification Authority (CA)](doc/adr/0004-Setting_up_vault_as_a_cert_auth.md)
 * [5. Application Delivery Pipelines](doc/adr/0005-pipeline-design.md)
 * [6. Internal DNS](doc/adr/0006-internal-dns-solution.md)
+* [7. Exploring Keyvault](doc/adr/0007-Exploring_keyvault.md)
