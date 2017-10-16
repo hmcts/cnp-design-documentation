@@ -71,6 +71,46 @@ You can do the following with certificate contacts:
 * Set certificate contacts
 * Delete certificate contacts
 
+### Interacting with the KeyVault API
+
+Interacting with the KeyVault REST API is a 2 step process. First one must obtain a valid authentication token that can subsequently be used to conduct any of the KeyVault operations listed above providing your service principal have the right access policies for the targeted vault. To illustrate the process here are some sample API calls to obtain a token and then List the certificates in a keyvault called `danvaultpoc`:
+
+* We first request an access token. For this you'll need some information about your service_principal, specifically the `TENANT_ID`, `CLIENT_ID` and `CLIENT_SECRET` values:
+
+```shell
+$ curl -X "POST" "https://login.microsoftonline.com/$ARM_TENANT_ID/oauth2/token" -H "Content-Type: application/x-www-form-urlencoded" --data-urlencode "client_id=$ARM_CLIENT_ID" --data-urlencode "grant_type=client_credentials" --data-urlencode "client_secret=$ARM_CLIENT_SECRET" --data-urlencode "resource=https://vault.azure.net" | jq -r .access_token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1425  100  1279  100   146   6350    724 --:--:-- --:--:-- --:--:--  6363
+eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJLVmN1enFBaWRPTHFXU2FvbDd3Z0ZSR0
+< output truncated >
+```
+* Once we have obtain the token it is possible to conduct operations like those listed above against an specific vault. Here we show how to get a list of certificates stored in a vault (`danvaultpoc`):
+
+```shell
+$ curl -H "Authorization: Bearer <put your token here>" https://dankvaultpoc.vault.azure.net/certificates?api-version=2016-10-01 | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   234  100   234    0     0    253      0 --:--:-- --:--:-- --:--:--   253
+{
+  "value": [
+    {
+      "id": "https://dankvaultpoc.vault.azure.net/certificates/cert1",
+      "x5t": "1h6bRfbhRdsrDvJfF3S5jVU_gbk",
+      "attributes": {
+        "enabled": true,
+        "nbf": 1507645296,
+        "exp": 1539181896,
+        "created": 1507645896,
+        "updated": 1507645896
+      }
+    }
+  ],
+  "nextLink": null
+}
+```
+
+
 ## Consequences
 
 Although it is not currently clear how we could leverage KV as an Intermediate CA we believe the extensive number of operations that can be controlled via its REST API provide us with enough flexibility to accommodate the webapp + certs use cases currently devised for CNP.
