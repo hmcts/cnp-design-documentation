@@ -15,3 +15,4 @@
 * [5. Application Delivery Pipelines](doc/adr/0005-pipeline-design.md)
 * [6. Internal DNS](doc/adr/0006-internal-dns-solution.md)
 * [7. Exploring Keyvault](doc/adr/0007-Exploring_keyvault.md)
+* [8. Jenkins Data Loss & Encryption](doc/adr/0008-jenkins-data-loss.md)
