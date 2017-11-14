@@ -29,9 +29,22 @@ The master branch of each repository should be configured as a Protected Branch,
 _Image from [TrunkBasedDevelopment.com](https://trunkbaseddevelopment.com/short-lived-feature-branches/)_
 
 ### Use Pull Requests for code review
-Code reviews are an enabler for improving code quality and knowledge sharing.  Combined with short lived feature branches, small pull requests enable fast feedback and an early opportunity to incorporate it.  
+Code reviews are an enabler for improving code quality and knowledge sharing.  Combined with short lived feature branches, small pull requests (PR) enable fast feedback and an early opportunity to incorporate it.  
 
 The in-built support within Github is excellent for facilitating reviews and each repository should configured to require at least one review before merge. 
+
+The creation of a pull request will trigger a shortened pipeline.  The PR code will be applied to the master code locally on the Jenkins agent workspace, as such simulating a merge.  The shortened pipeline will then run the static checks (i.e. checks which do not require deployment to an environment).  This will include running unit tests and static analysis.  These checks, combined with a peer review, should provide enough confidence that a PR is ready for merge.  
+
+Once a PR is merged, a full pipeline will be triggered and the integrated code will once again pass through the static checks before a deployment stage and on to the Production subscription.
+
+### Use strategies to allow deployment to continue whilst controlling the release of changes
+In a Continuous Delivery world, using short lived feature branches, ideally all changes will be small enough to fit into this process.  For the times that this is not the case, it is important to separate the action of "deploying code" from "releasing a change".  This is to allow the code to continue to be tested and deployed whilst avoiding big bang deployments.
+
+One strategy is [Branch by Abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html)".  This is a technique for making a large-scale change to a software system in gradual way that allows you to release the system regularly while the change is still in-progress.
+
+Another strategy is [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html).  At their most basic, they are flags that disable or enable code paths through an application.  There are multiple categories of feature toggles allowing for different levels of change, from experimentation to controlling a release.
+
+### Blue/Green deployments support "no downtime deploys"
 
 
 
@@ -43,3 +56,4 @@ Consequences here...
 * [TrunkBasedDevelopment.com](http://trunkbaseddevelopment.com)
 * GDS Blog post: [Easing the process of pull request reviews](https://gdstechnology.blog.gov.uk/2016/09/30/easing-the-process-of-pull-request-reviews/)
 * [Organisation Pattern: Trunk based Development](https://www.continuousdeliveryconsulting.com/blog/organisation-pattern-trunk-based-development/)
+* [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html)
