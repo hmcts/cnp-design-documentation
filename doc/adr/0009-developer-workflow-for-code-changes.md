@@ -44,8 +44,18 @@ One strategy is [Branch by Abstraction](https://martinfowler.com/bliki/BranchByA
 
 Another strategy is [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html).  At their most basic, they are flags that disable or enable code paths through an application.  There are multiple categories of feature toggles allowing for different levels of change, from experimentation to controlling a release.
 
-### Blue/Green deployments support "no downtime deploys"
+### Blue/Green deployments support "zero downtime deploys"
+To support frequent, small deployments we will use [Blue/Green deployment mechanisms](https://martinfowler.com/bliki/BlueGreenDeployment.html) to ensure zero downtime during the process.  Production is split into two subsets of apps: one set serving live traffic and another parallel set which is not.  Deployments are sent to the non-live set and tests are run against them.  If the tests are successful a manual switch is hit and the traffic is routed to this subset making it live.
 
+
+![Diagram of a blue/green environment and traffic being routed from one to the other](../../img/BlueGreen.png)
+
+This switch requires that new deployments of the applications are backwards compatible with the deployment currently receiving live traffic.  As a result, changes become small, gradual and less risky.
+
+### Managing database changes whilst using a Blue/Green 
+With a Blue/Green deployment any data store is shared between both subsets.  To support this, changes to the schema must be done in phases in tandem with application deployments. Recommended reading is the blog post [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/)
+
+This will be fully explored in a separate document.
 
 
 ## Consequences
@@ -57,3 +67,4 @@ Consequences here...
 * GDS Blog post: [Easing the process of pull request reviews](https://gdstechnology.blog.gov.uk/2016/09/30/easing-the-process-of-pull-request-reviews/)
 * [Organisation Pattern: Trunk based Development](https://www.continuousdeliveryconsulting.com/blog/organisation-pattern-trunk-based-development/)
 * [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html)
+* [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/)
