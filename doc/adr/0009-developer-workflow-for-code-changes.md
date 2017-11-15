@@ -35,6 +35,8 @@ The in-built support within Github is excellent for facilitating reviews and eac
 
 The creation of a pull request will trigger a shortened pipeline.  The PR code will be applied to the master code locally on the Jenkins agent workspace, as such simulating a merge.  The shortened pipeline will then run the static checks (i.e. checks which do not require deployment to an environment).  This will include running unit tests and static analysis.  These checks, combined with a peer review, should provide enough confidence that a PR is ready for merge.  
 
+![Diagram of a pull request going through static checks before merge](../../img/Pull-Request-Pipeline-Flow.png)
+
 Once a PR is merged, a full pipeline will be triggered and the integrated code will once again pass through the static checks before a deployment stage and on to the Production subscription.
 
 ### Use strategies to allow deployment to continue whilst controlling the release of changes
@@ -46,7 +48,6 @@ Another strategy is [Feature Toggles](https://martinfowler.com/articles/feature-
 
 ### Blue/Green deployments support "zero downtime deploys"
 To support frequent, small deployments we will use [Blue/Green deployment mechanisms](https://martinfowler.com/bliki/BlueGreenDeployment.html) to ensure zero downtime during the process.  Production is split into two subsets of apps: one set serving live traffic and another parallel set which is not.  Deployments are sent to the non-live set and tests are run against them.  If the tests are successful a manual switch is hit and the traffic is routed to this subset making it live.
-
 
 ![Diagram of a blue/green environment and traffic being routed from one to the other](../../img/BlueGreen.png)
 
