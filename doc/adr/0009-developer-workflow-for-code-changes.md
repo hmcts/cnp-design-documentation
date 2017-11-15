@@ -52,7 +52,7 @@ To support frequent, small deployments we will use [Blue/Green deployment mechan
 
 This switch requires that new deployments of the applications are backwards compatible with the deployment currently receiving live traffic.  As a result, changes become small, gradual and less risky.
 
-### Managing database changes whilst using a Blue/Green 
+### Managing database changes whilst using Blue/Green deployments
 With a Blue/Green deployment any data store is shared between both subsets.  To support this, changes to the schema must be done in phases in tandem with application deployments. Recommended reading is the blog post [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/)
 
 This will be fully explored in a separate document.
