@@ -68,3 +68,4 @@ A successful Continuous Delivery pipeline requires a high standard of automated 
 * [Organisation Pattern: Trunk based Development](https://www.continuousdeliveryconsulting.com/blog/organisation-pattern-trunk-based-development/)
 * [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html)
 * [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/)
+* [12 factor Apps](https://12factor.net/)
