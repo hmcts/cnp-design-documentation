@@ -8,7 +8,7 @@ Proposed
 
 ## Context
 
-Adoption of the CNP brings with the ability to change and improve the developer workflow when making application code changes.  As per [5. Application Delivery Pipelines](doc/adr/0005-pipeline-design.md) the pipeline is opinionated and promotes the practice of Continuous Delivery.  This proposal goes into the detail of the expected workflow of a developer making an application change in the context of CNP using Continuous Delivery.
+Adoption of the CNP brings with it the ability to change and improve the developer workflow when making application code changes.  As per [5. Application Delivery Pipelines](0005-pipeline-design.md) the pipeline is opinionated and promotes the practice of Continuous Delivery.  This proposal goes into the detail of the expected workflow of a developer making an application change in the context of CNP using Continuous Delivery.
 
 ### What is Developer Workflow?
 Developer workflow is the process developers use to create application changes and prepare them for release in a reliable manner.  This includes the branching strategies, code review, and testing, all with a heavy reliance on the pipeline.
@@ -56,12 +56,11 @@ This switch requires that new deployments of the applications are backwards comp
 ### Managing database changes whilst using Blue/Green deployments
 With a Blue/Green deployment any data store is shared between both subsets.  To support this, changes to the schema must be done in phases in tandem with application deployments. Recommended reading is the blog post [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/)
 
-This will be fully explored in a separate document.
+This is explored in [10. Developer Workflow for DB Schema Changes](0010-developer-workflow-for-db-schema-changes.md).
 
 
 ## Consequences
-
-Consequences here...
+A successful Continuous Delivery pipeline requires a high standard of automated testing rigour to provide the confidence for frequent releases.  Alongside this, zero downtime deployments drive a change in the software engineering of applications to use strategies for ensuring backward compatibility between releases.  We prioritise stability, releasability and operability over the ease of development.
 
 ## Recommended Reading
 * [TrunkBasedDevelopment.com](http://trunkbaseddevelopment.com)
