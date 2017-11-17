@@ -18,7 +18,7 @@ Developer workflow is the process developers use to create application changes a
 The following patterns are proposed in order to facilitate confident code changes with fast feedback.
 
 ### Trunk based development using short lived feature branches
-Trunk based development is an enabler for Continuous Delivery via Continuous Integration.  Changes are frequently made to the master branch (trunk) whilst ensuring the master branch is always in a releasable state.  The releasable state is supported by a wide range of automated testing and development strategies for managing change such as feature toggles or branch by abstraction.
+Trunk based development is an enabler for Continuous Delivery via Continuous Integration.  Changes are frequently made to the master branch (trunk) whilst ensuring the master branch is always in a releasable state.  The releasable state is supported by a wide range of automated testing and development strategies for managing change such as feature toggles or branch by abstraction.  
 
 A short lived feature branch is a branch created with a specific and small change as its purpose.  The branch should live no more than a couple of days, preferably under a single day, before it is merged into master and deleted.  The merging takes place via a Pull Request in the [Github Flow](https://guides.github.com/introduction/flow/) (not to be confused with the more onerous [GitFlow](http://endoflineblog.com/gitflow-considered-harmful)).  There should be no more than one short lived feature branch per developer and are not shared.  This is easily achievable when change is small, focussed and frequently merged into master.
 
@@ -27,6 +27,8 @@ The master branch of each repository should be configured as a Protected Branch,
 ![Diagram of a short lived feature branch with commits, a PR, comments and a merge to master](../../img/trunk_pr.png)
 <br />
 _Image from [TrunkBasedDevelopment.com](https://trunkbaseddevelopment.com/short-lived-feature-branches/)_
+
+Integration is frequent, test are run automatically and master is kept green with failed builds fixed within ten minutes as per Martin Fowler's [Continuous Integration Certification Test](https://martinfowler.com/bliki/ContinuousIntegrationCertification.html).
 
 ### Use Pull Requests for code review
 Code reviews are an enabler for improving code quality and knowledge sharing.  Combined with short lived feature branches, small pull requests (PR) enable fast feedback and an early opportunity to incorporate it.  
