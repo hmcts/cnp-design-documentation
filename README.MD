@@ -16,3 +16,4 @@
 * [6. Internal DNS](doc/adr/0006-internal-dns-solution.md)
 * [7. Exploring Keyvault](doc/adr/0007-Exploring_keyvault.md)
 * [8. Jenkins Data Loss & Encryption](doc/adr/0008-jenkins-data-loss.md)
+* [10. Developer Workflow for DB Schema Changes](doc/adr/0010-developer-workflow-for-db-schema-changes.md)
