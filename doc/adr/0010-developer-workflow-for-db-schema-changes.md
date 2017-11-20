@@ -44,6 +44,16 @@ If the frontend doesn't function without the backend or the 'backend' is also a 
 
 To perform zero-downtime database deployments the schema migration MUST be separated from the code deployment. [Database Migrations Done Right](http://www.brunton-spall.co.uk/post/2014/05/06/database-migrations-done-right/) explains further and gives an example of the steps required when adding a non-nullable column to an existing table.
 
-The five-step process for adding the column is shown in the diagram below.
+Essentially, database migrations must be done in such a way that they are done **independently** of application deployments. The underlying principle to obey here is:
 
-![Add non-nullable column](../../img/Add-Non-Nullable-Column.jpg)
+> Every change you make must be backward compatible with the rest of the system
+
+For the add non-nullable column scenario these are the backward compatible steps to perform the change:
+
+1. Add nullable column to database – System keeps adding rows, nulls are fine, reads ignore the null
+1. Code change to write correct value to new rows, and handle reading unexpected nulls – Database doesn’t change, now we have some null rows and some rows with data
+1. Run data migration to fill the other columns – This might be a script, or a bit of code in the application, either way your app doesn’t care about any row, it handles data and nulls just fine
+1. Add the non-null constraint – The database now has no nulls and your new code is writing the correct data.
+1. Remove the code that handles the null case – it won’t happen anymore.
+
+![Add non-nullable column](../../img/Zero-downtime-DB-migrations.png)
