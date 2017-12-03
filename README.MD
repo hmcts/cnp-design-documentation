@@ -18,3 +18,4 @@
 * [8. Jenkins Data Loss & Encryption](doc/adr/0008-jenkins-data-loss.md)
 * [9. Developer Workflow for Code Changes](doc/adr/0009-developer-workflow-for-code-changes.md)
 * [10. Developer Workflow for DB Schema Changes](doc/adr/0010-developer-workflow-for-db-schema-changes.md)
+* [11. Pipeline Metrics](doc/adr/0011-pipeline-metrics.md)
