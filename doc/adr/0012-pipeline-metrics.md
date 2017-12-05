@@ -69,7 +69,7 @@ Tracks the rate at which code is committed to master - an indicator of Continuou
 A combination of:
 
 * Mainline Lead Time
-  * Time between a commit and it’s merge to master
+  * Time between a commit and its merge to master
   * Sourced from github
 * Mainline Interval
   * Average between master commits
