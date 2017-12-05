@@ -12,7 +12,7 @@ another's Azure subscription, or might be another's demo application location.
 
 In the Jenkins library code, the single variable `environment` (or `env`, etc) is passed around with different meanings at both the calling and receiving sites. This causes confusion and makes understanding and debugging the library difficult. Also, having 3 separate concepts represented by a single variable introduces a sources of potential bugs and reduces the flexibility of the overall solution. E.g. at the moment we can only have one environment per subscription.
 
-Where developers have realised this limitation, other terms and variable names have been used local but there is no consistent, shared set of terms so different names have been used to represent the same concepts.
+Where developers have realised this limitation, other terms and variable names have been used locally but there is no consistent, shared set of terms so different names have been used to represent the same concepts.
 
 ## Decision
 
