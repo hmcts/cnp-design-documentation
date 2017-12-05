@@ -7,10 +7,12 @@ Proposed
 ## Context
 
 The term 'environment' is incredibly overloaded and means different things to different people
-even on the same team. In the context of CNP infrastructure, one developer's environment might be
-another's subscription, or might be another's demo application location.
+even on the same team. In the context of CNP infrastructure and applications, one developer's environment might be
+another's Azure subscription, or might be another's demo application location.
 
-In the library code, the single variable `environment` (or `env`, etc) is passed around with different meanings at both the calling and receiving sites. This causes confusion and makes understanding and debugging the library difficult. Also, having 3 separate concepts represented by a single variable introduces a sources of potential bugs and reduces the flexibility of the overall solution. E.g. at the moment we can only have one environment per subscription.
+In the Jenkins library code, the single variable `environment` (or `env`, etc) is passed around with different meanings at both the calling and receiving sites. This causes confusion and makes understanding and debugging the library difficult. Also, having 3 separate concepts represented by a single variable introduces a sources of potential bugs and reduces the flexibility of the overall solution. E.g. at the moment we can only have one environment per subscription.
+
+Where developers have realised this limitation, other terms and variable names have been used local but there is no consistent, shared set of terms so different names have been used to represent the same concepts.
 
 ## Decision
 
@@ -30,6 +32,6 @@ and function definitions should use the convention above.
 ## Consequences
 
 * Check all method definitions to make sure the correct variable name is used.
-* Refactor code to use multiple, different, correctly-named variables where more than one concept is being describe. This may mean that method signatures need to be modified to take additional parameters.
-* Application infrastructure code will need to specify 3 variables instead of one (currently it just has `env`) to correctly identify existing state storage locations and to correctly name new infrastructure components. E.g. it will need to use the `subscription` and `environment` values to locate the remote state storage for the core-compute to deploy the app to and will need the `application_context` value to create the correct name for the application i the ASE.
+* Refactor code to use multiple, different, correctly-named variables where more than one concept is being described. This may mean that method signatures need to be modified to take additional parameters.
+* Application infrastructure code will need to specify 3 variables instead of one (currently it just has `env`) to correctly identify existing state storage locations and to correctly name new infrastructure components. E.g. it will need to use the `subscription` and `environment` values to locate the remote state storage for the core-compute to deploy the app to and will need the `application_context` value to create the correct name for the application in the ASE.
 * Application pipeline will need to pass the 3 values to the infrastructure code when it is being built. The rules above relating to special values for `environment` and `application_context` can be used.
