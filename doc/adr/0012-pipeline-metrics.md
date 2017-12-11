@@ -28,7 +28,7 @@ A combination of:
 
 ### Deployment Throughput
 
-Tracks the how effective the pipeline is at supporting frequent releases (and therefore reduction of unreleased code and increased ability to react to change.
+Tracks how effective the pipeline is at supporting frequent releases (and therefore reduction of unreleased code and increased ability to react to change.
 This value is an indicator of the ability to deploy to production frequently. It should be kept low and ideally less than a day.
 
 A combination of:
