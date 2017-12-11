@@ -12,6 +12,9 @@ To determine the success and health of the pipeline, the following metrics will 
 
 ### Deployment Stability
 
+Tracks how effective the Pipeline is in supporting recovery from issues via deployment of remediating changes.
+This value is a factor of the pipeline's entire processing time and should be kept as low as possible whilst maintaining trust.
+
 A combination of:
 
 * Production Deployment Failure Rate
@@ -24,6 +27,9 @@ A combination of:
 ![Deployment Stability](../../img/deploy-stability.png)
 
 ### Deployment Throughput
+
+Tracks the how effective the pipeline is at supporting frequent releases (and therefore reduction of unreleased code and increased ability to react to change.
+This value is an indicator of the ability to deploy to production frequently. It should be kept low and ideally less than a day.
 
 A combination of:
 
@@ -38,6 +44,9 @@ A combination of:
 
 ### Build Stability
 
+Indicates the team's ability and diligence of maintaining the application in a “potentially deployable” state from the master branch - a core tenant of Continuous Delivery.
+This value should be kept low.
+
 A combination of:
 
 * Build Failure Rate
@@ -51,7 +60,9 @@ A combination of:
 
 ### Build Throughput
 
-As artifacts aren’t used, we’ll approximate to the deploy to non-live of blue/green
+Indicates the frequency of change in an application.  In an actively developed application this value should be relatively high - frequent changes being built and deployed to pre-release - at least once or twice a day.
+As artefacts aren't used, we'll approximate to the deploy to non-live of blue/green.
+
 A combination of:
 
 * Build Lead Time
@@ -66,6 +77,7 @@ A combination of:
 ### Mainline (master branch) Throughput
 
 Tracks the rate at which code is committed to master - an indicator of Continuous Integration and whether code is hanging around in unmerged branches.
+
 A combination of:
 
 * Mainline Lead Time
