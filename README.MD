@@ -20,4 +20,3 @@
 * [10. Developer Workflow for DB Schema Changes](doc/adr/0010-developer-workflow-for-db-schema-changes.md)
 * [11. Definition of Environment](doc/adr/0011-definition-of-environment.md)
 * [12. Pipeline Metrics](doc/adr/0012-pipeline-metrics.md)
-
